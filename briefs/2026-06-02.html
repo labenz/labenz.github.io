@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI:AM — Tuesday, June 2 · First 30 minutes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* AI:AM editorial palette (matches FamiliarAI/ai-in-the-am-website .html-landing tokens) */
+    --orange: #f4833a;
+    --ink: #0e0a06;
+    --ink-2: #1a1208;
+    --paper: #fbf8f1;
+    --paper-2: #f3ecdb;
+    --paper-dim: #cfc7b8;
+    --rule: #d9cfb9;
+    --rule-strong: #1a1612;
+    --rule-dark: rgba(244, 131, 58, 0.22);
+    --text: #1a1612;
+    --text-2: #3a322a;
+    --muted: #8a847a;
+    --navy: #0e1a2e;
+    --cream: #f5efe4;
+
+    --serif: Fraunces, Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; background: var(--paper); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 0 96px;
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .wrap { grid-template-columns: 1fr; gap: 32px; }
+    nav.toc.left-rail { order: -1; }
+  }
+  main { min-width: 0; padding: 0 32px; }
+  @media (max-width: 900px) {
+    main { padding: 0 20px; }
+  }
+
+  /* Masthead — navy bar across the top */
+  .masthead {
+    grid-column: 1 / -1;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 22px 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--rule-dark);
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .masthead .wordmark {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .masthead .wordmark em {
+    color: var(--orange);
+    font-style: normal;
+  }
+  .masthead .tagline {
+    color: var(--paper-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* Headline + lede */
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 44px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+    color: var(--text);
+    text-wrap: balance;
+  }
+  .lede {
+    margin: 0 0 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--text-2);
+    font-style: italic;
+    font-size: 15px;
+  }
+
+  /* Sections */
+  h2 {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 56px 0 12px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule);
+    color: var(--text);
+    text-wrap: balance;
+  }
+  h2:first-of-type { padding-top: 0; border-top: 0; margin-top: 0; }
+  h3 {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    margin: 32px 0 10px;
+  }
+
+  /* Kicker — the orange mono uppercase label that AI:AM uses everywhere.
+     Drop a `<p>**KICKER:** ...</p>` and the renderer styles it. */
+  p { margin: 0 0 16px; }
+
+  /* Body links */
+  a { color: var(--text); text-decoration-color: var(--orange); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { color: var(--orange); }
+
+  /* Lists */
+  ul, ol { padding-left: 22px; margin: 0 0 18px; }
+  li { margin: 6px 0; }
+  ul li::marker { color: var(--orange); }
+  ol li::marker { color: var(--orange); font-family: var(--mono); font-weight: 700; }
+
+  /* TOC — sticky left rail with mono labels */
+  nav.toc.left-rail {
+    position: sticky;
+    top: 24px;
+    padding: 40px 0 0 32px;
+  }
+  @media (max-width: 900px) {
+    nav.toc.left-rail { position: static; padding: 0 20px; }
+  }
+  nav.toc .toc-label {
+    color: var(--orange);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  nav.toc ul { list-style: none; padding: 0; margin: 0; }
+  nav.toc > ul > li {
+    margin: 10px 0;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  nav.toc ul ul {
+    margin: 6px 0 10px;
+    padding-left: 12px;
+    border-left: 1px solid var(--rule);
+  }
+  nav.toc ul ul li {
+    margin: 6px 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-2);
+  }
+  nav.toc a { color: var(--text-2); text-decoration: none; }
+  nav.toc a:hover { color: var(--orange); }
+
+  /* Bottom-line / TL;DR callout — orange-bordered card on cream paper */
+  p.tldr {
+    background: var(--paper-2);
+    border-left: 3px solid var(--orange);
+    padding: 16px 20px;
+    margin: 8px 0 22px;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  p.tldr strong:first-child {
+    color: var(--orange);
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-right: 8px;
+    vertical-align: 1px;
+  }
+
+  /* Tweet headline — serif italic just above the embed */
+  p.tweet-headline {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    color: var(--text);
+    margin: 28px 0 6px;
+  }
+  p.tweet-headline strong { font-weight: 600; font-style: italic; }
+
+  /* X embeds — keep them on cream paper, no extra chrome */
+  blockquote.twitter-tweet {
+    margin: 6px 0 8px !important;
+    background: var(--paper);
+    border-radius: 8px !important;
+  }
+  p.tweet-headline + blockquote.twitter-tweet { margin-top: 6px !important; }
+
+  /* Fallback for unresolved tweets */
+  .tweet-placeholder {
+    display: block;
+    margin: 12px 0 8px;
+    padding: 14px 18px;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--text-2);
+  }
+  .tweet-placeholder a { color: var(--orange); }
+
+  /* Annotation (italic legacy style) — kept for any old briefs */
+  em.annotation, p.annotation {
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+    font-style: italic;
+    margin: -2px 0 16px;
+    padding-left: 14px;
+    border-left: 2px solid var(--rule);
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; font-size: 13px; }
+    .wrap { display: block; max-width: none; padding: 0; }
+    .masthead { background: white; color: var(--text); border-bottom: 2px solid var(--ink); margin-bottom: 24px; }
+    .masthead .wordmark em { color: var(--ink); }
+    .masthead .tagline { color: var(--muted); }
+    nav.toc.left-rail { display: none; }
+    h2 { page-break-after: avoid; }
+    blockquote.twitter-tweet { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="masthead">
+  <span class="wordmark">AI:<em>AM</em></span>
+  <span class="tagline">an independent live briefing for the people building, funding, and shipping AI</span>
+</div>
+<nav class="toc left-rail"><div class="toc-label">In this brief</div><ul><li><a href="#outline">Outline</a></li><li><a href="#rsi-changelog-3-min-open">RSI Changelog (3 min open)</a></li><li><a href="#segment-1-anthropic-files-s-1-8-min">Segment 1 — Anthropic files S-1 (8 min)</a></li><li><a href="#segment-2-bernies-50-nationalization-proposal-6-min">Segment 2 — Bernie&#39;s 50% nationalization proposal (6 min)</a></li><li><a href="#segment-3-openai-breaks-azure-exclusivity-4-min">Segment 3 — OpenAI breaks Azure exclusivity (4 min)</a></li><li><a href="#segment-4-openais-two-day-policy-lap-7-min">Segment 4 — OpenAI&#39;s two-day policy lap (7 min)</a></li><li><a href="#segment-5-research-metr-on-rogue-deployment-monitoring-5-min-if-time">Segment 5 — Research: METR on rogue-deployment monitoring (5 min, if time)</a></li></ul></nav>
+<main>
+<h1>AI:AM — Tuesday, June 2 · First 30 minutes</h1>
+<p class="lede"></p>
+<h2 id="outline">Outline</h2>
+<ol><li><strong>RSI Changelog — what we&#39;re changing about the show</strong> (3 min open)</li><li><strong>Anthropic files S-1</strong> (8 min)</li><li><strong>Bernie&#39;s 50% nationalization proposal</strong> (6 min)</li><li><strong>OpenAI breaks Azure exclusivity → AWS Bedrock</strong> (4 min)</li><li><strong>OpenAI&#39;s two-day policy lap: PAC + Foundation</strong> (7 min)</li><li><strong>Research: METR on rogue-deployment monitoring</strong> (5 min, if time)</li></ol>
+<h2 id="rsi-changelog-3-min-open">RSI Changelog (3 min open)</h2>
+<p class="tldr"><strong>Bottom line:</strong> A live show <em>about</em> recursive self-improvement should itself improve recursively. Five things changing about AI:AM, ship-list framing — what&#39;s new this week, what&#39;s coming next.</p>
+<p>The point of this segment is to make the show&#39;s own iteration legible. We&#39;re a live editorial product, and we want viewers to see the deltas, not just the output. (Pairs naturally with the Elad Gil + Recursive thread that&#39;s the meta-frame for the next 30 min.)</p>
+<ul><li><strong>AI music at the top and the tail.</strong> Custom Suno-generated intro and outro starting this week. Eventually open to listener submissions.</li><li><strong>Outlines + briefs published in advance.</strong> This brief (and every show outline going forward) is publicly readable before the show airs. Viewers can read along, dunk on the framing in the replies, or come prepared with their own takes. Forces our editorial honesty.</li><li><strong>Best-of audio cuts on the CR feed.</strong> Full live show stays on YouTube as the record. The podcast feed gets a tighter best-of — more Nathan/Prakash synthesis, less raw guest reporting. Two distinct artifacts, deliberately different.</li><li><strong>Higher-energy open, Hard-Fork benchmark.</strong> Kevin Roose + Casey Newton sustain show-quality energy throughout; we haven&#39;t been hitting that yet. Working on it.</li><li><strong>AI music videos in the pipeline.</strong> Experimenting with one this week as a content-promotion piece — see where Veo + Luma + Runway + LTX land cinematically.</li></ul>
+<p class="tweet-headline"><strong>Discussion prompts:</strong></p>
+<ul><li>Which of these do we want viewer feedback on this week specifically?</li><li>Anything we should NOT ship — too cute, too gimmicky, undermines the editorial?</li><li>What&#39;s the next change you&#39;d add to this list?</li></ul>
+<h2 id="segment-1-anthropic-files-s-1-8-min">Segment 1 — Anthropic files S-1 (8 min)</h2>
+<p class="tldr"><strong>Bottom line:</strong> Anthropic confidentially submitted a draft S-1 to the SEC, capping a six-day stretch in which the company also closed a $65B Series H at a $965B post-money valuation. Three years ago it was a 160-person startup with no products and no revenue.</p>
+<p>The narrative is rate-of-change. May 28: Series H lands (lead investors Altimeter, Dragoneer, Greenoaks, Sequoia). June 1: confidential S-1 filed. Sequencing matters — pricing a private round at $965B and <em>then</em> filing for public markets is the move of a company that wants to set the IPO floor at $1T+ and let the public market push higher. Tenobrus&#39;s framing — &quot;at $1T it&#39;s 22x ARR, Mythos as-yet-unmonetized, so it&#39;ll be $3T&quot; — is the explicit version of what every late-stage growth investor is whispering. Karpathy joining earlier in May is the talent-side anchor for the same story.</p>
+<p class="tweet-headline"><strong>Anthropic: $65B Series H at $965B post-money — 7.7M views.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/AnthropicAI/status/2060061347522433422">View tweet by @AnthropicAI</a></blockquote>
+<p class="tweet-headline"><strong>Anthropic: confidential S-1 filed at the SEC — IPO option live.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/AnthropicAI/status/2061478052257841495">View tweet by @AnthropicAI</a></blockquote>
+<p class="tweet-headline"><strong>Kevin Roose: three years ago this was 160 people, no products, &quot;vaguely allergic to making money.&quot;</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/kevinroose/status/2061526831682236656">View tweet by @kevinroose</a></blockquote>
+<p class="tweet-headline"><strong>Tenobrus: $1T is &quot;obviously a deal&quot; — which is why it&#39;ll trade at $3T.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/tenobrus/status/2061568991949381850">View tweet by @tenobrus</a></blockquote>
+<p class="tweet-headline"><strong>Discussion prompts:</strong></p>
+<ul><li>What&#39;s actually in the S-1 that we can&#39;t see today? Customer concentration, the Amazon-Google compute split, alignment-spend line items — what would change the valuation if disclosed?</li><li>Pricing a $965B Series H <em>before</em> filing — what does that say about how Anthropic sees the public-market reception, and what does it mean for OpenAI&#39;s eventual filing?</li><li>If Karpathy&#39;s hire is the talent signal and Mythos is the product signal, what&#39;s the <em>go-to-market</em> signal we&#39;re still waiting on?</li></ul>
+<h2 id="segment-2-bernies-50-nationalization-proposal-6-min">Segment 2 — Bernie&#39;s 50% nationalization proposal (6 min)</h2>
+<p class="tldr"><strong>Bottom line:</strong> Sanders proposes the U.S. government take a 50% direct ownership stake in OpenAI and Anthropic. Likely DOA as legislation, but the framing has already moved into mainstream AI discourse — 28K posts and counting.</p>
+<p>The proposal lands in a charged context: Anthropic&#39;s Series H made it a near-trillion-dollar private entity; the S-1 filing would crystallize that publicly. Vitalik&#39;s critique cuts deeper than the policy detail — frontier AI rhetoric has shifted from &quot;benefit all of humanity&quot; (2010s) to &quot;benefit all of 4% of humanity&quot; (2020s), and Sanders&#39;s proposal is the symmetric left-coded response to a right-coded &quot;AI is American power&quot; frame. Both treat the labs as national assets. Neither treats them as global goods.</p>
+<p class="tweet-headline"><strong>Polymarket: Bernie proposes 50% government stake in OpenAI + Anthropic.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/Polymarket/status/2061476034550157678">View tweet by @Polymarket</a></blockquote>
+<p class="tweet-headline"><strong>Vitalik: frontier labs went from &quot;benefit all of humanity&quot; to &quot;benefit all of 4% of humanity.&quot;</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/VitalikButerin/status/2061478751586701415">View tweet by @VitalikButerin</a></blockquote>
+<p class="tweet-headline"><strong>Discussion prompts:</strong></p>
+<ul><li>Is &quot;the labs serve the nation&quot; already the inside-the-labs operating frame, just unstated?</li><li>Vitalik&#39;s &quot;4% of humanity&quot; critique — what would actually demand operationally? And what&#39;s the strongest version of the nationalist reply?</li><li>Sanders proposes equity. Voting rights would change the calculus entirely — would 50% equity without governance rights even be coherent?</li></ul>
+<h2 id="segment-3-openai-breaks-azure-exclusivity-4-min">Segment 3 — OpenAI breaks Azure exclusivity (4 min)</h2>
+<p class="tldr"><strong>Bottom line:</strong> OpenAI frontier models and Codex are now generally available on AWS Bedrock. The Microsoft-exclusive enterprise distribution era is over.</p>
+<p>OpenAI&#39;s enterprise revenue has been entirely Azure-routed. AWS is a materially bigger enterprise data plane — every Fortune 500 that defaulted away from OpenAI because of Azure friction is now in addressable scope. The timing — same week as the S-1 filing for Anthropic (which has been AWS-Bedrock-first since 2023) — collapses the cloud-of-origin distinction that has structured enterprise model selection for two years.</p>
+<p class="tweet-headline"><strong>OpenAI: frontier models + Codex now generally available on AWS Bedrock.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/OpenAI/status/2061564502160892138">View tweet by @OpenAI</a></blockquote>
+<p class="tweet-headline"><strong>Chengpeng Mou: OpenAI built significant enterprise adoption through Azure only. That changes today.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/CPMou2022/status/2061574499485831438">View tweet by @CPMou2022</a></blockquote>
+<p class="tweet-headline"><strong>Discussion prompts:</strong></p>
+<ul><li>What did Microsoft give up to make this happen — is this a Microsoft concession, a contract clause triggering, or OpenAI simply renegotiating?</li><li>For Anthropic (AWS-first) and Google (GCP-first), does this expand or contract their addressable market?</li></ul>
+<h2 id="segment-4-openais-two-day-policy-lap-7-min">Segment 4 — OpenAI&#39;s two-day policy lap (7 min)</h2>
+<p class="tldr"><strong>Bottom line:</strong> In 48 hours OpenAI launched a $130M Foundation grants program (&quot;AI Resilience&quot; — bio, cyber, model safety, youth) <em>and</em> issued a public statement on its political advocacy practices. Two halves of the same positioning move: we fund safety, we are transparent about lobbying.</p>
+<p>The PAC statement is the more revealing of the two. It comes after months of pressure on &quot;Leading the Future&quot; — an OpenAI/a16z-aligned super PAC that opposed Alex Bores&#39;s New York RAISE Act and other state-level AI bills. Researchers and policy folks (including ex-OpenAI staff like Jason Wolfe) have been openly skeptical, publicly donating to Bores in personal capacity. The statement is OpenAI saying &quot;yes, we lobby; here&#39;s how we want to be judged on it.&quot; The Foundation grants are the constructive counterweight — but Judd Rosenblatt&#39;s critique lands: $130M into evals + cyber + youth, not into alignment R&amp;D itself.</p>
+<p class="tweet-headline"><strong>OpenAI Foundation: $130M in initial grants for &quot;AI Resilience&quot; — bio, cyber, safety, youth.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/FoundationOAI/status/2061463726407155795">View tweet by @FoundationOAI</a></blockquote>
+<p class="tweet-headline"><strong>OpenAI Newsroom: statement on AI policy and political advocacy — transparency on how we represent views.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/OpenAINewsroom/status/2061601425701142586">View tweet by @OpenAINewsroom</a></blockquote>
+<p class="tweet-headline"><strong>Judd Rosenblatt: this is the same old mistakes — funding evals + infrastructure when alignment R&amp;D is what&#39;s needed.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/juddrosenblatt/status/2061532109186195766">View tweet by @juddrosenblatt</a></blockquote>
+<p class="tweet-headline"><strong>Discussion prompts:</strong></p>
+<ul><li>The PAC story has been simmering for months — why now, and what specifically did &quot;Leading the Future&quot; do that forced the response?</li><li>Foundation grant categories: bio, cyber, safety, youth. The theory of risk that produces <em>that</em> list — what&#39;s missing from it?</li><li>Is &quot;we lobby and we&#39;re transparent about it&quot; actually a defensible posture, or just a more sophisticated version of the same thing? What&#39;s a meaningfully different bar?</li></ul>
+<h2 id="segment-5-research-metr-on-rogue-deployment-monitoring-5-min-if-time">Segment 5 — Research: METR on rogue-deployment monitoring (5 min, if time)</h2>
+<p class="tldr"><strong>Bottom line:</strong> METR&#39;s recent Frontier Risk Report (with OpenAI, Anthropic, GDM, Meta cooperating) tested whether internal monitoring would actually catch agents undermining control. Their finding: agents had means + motive + opportunity for a &quot;minimal rogue deployment,&quot; but the labs&#39; current monitoring would partially-but-imperfectly detect it.</p>
+<p>The report is the most rigorous lab-cooperated study to date on whether AI safety processes scale to the kinds of agents already in use. Worth surfacing not because it&#39;s brand new (mid-May) but because the Anthropic IPO + OpenAI Foundation grant categories above both gesture at &quot;we care about safety&quot; — METR&#39;s findings are the empirical floor that anyone making that claim should be measured against.</p>
+<p class="tweet-headline"><strong>METR Fact 6: agents had means/motive/opportunity for a minimal rogue deployment; monitoring would partially catch them.</strong></p>
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="light"><a href="https://x.com/METR_Evals/status/2056800042229666269">View tweet by @METR_Evals</a></blockquote>
+<p class="tweet-headline"><strong>Discussion prompts:</strong></p>
+<ul><li>&quot;Partially&quot; catch — what does the rogue-deployment threat model look like if monitoring is, say, 70% effective? Where do the misses concentrate?</li><li>The labs cooperated with METR for this study. What&#39;s the next research move that requires <em>non-voluntary</em> cooperation, and how do we get there?</li></ul>
+<p>---</p>
+<p class="annotation">If running ahead at 30: pivot to Anthropic&#39;s new &quot;AI and the rule of law&quot; team (Matt Botvinick announcement, June 1) — different angle on the IPO-week narrative, also fits the policy thread.</p>
+</main>
+</div>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+</html>
