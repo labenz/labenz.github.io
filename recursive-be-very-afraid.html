@@ -61,12 +61,17 @@
   .byline{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-40);
     margin-top:22px;letter-spacing:.5px}
 
-  /* ---- disclosure ---- */
-  .disclosure{display:flex;gap:14px;align-items:flex-start;margin:30px 0 10px;
-    background:rgba(255,176,0,.08);border:1px solid rgba(255,176,0,.28);
-    border-radius:var(--radius);padding:16px 18px;font-size:14.5px;color:var(--text-60)}
-  .disclosure .tag{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;
-    letter-spacing:1.5px;color:var(--crt-amber);white-space:nowrap;padding-top:2px}
+  /* ---- premise ---- */
+  .premise{margin:30px 0 10px;padding:22px 24px;border-radius:var(--radius);
+    background:var(--glass-fill);backdrop-filter:blur(24px);border:1px solid var(--glass-border);
+    box-shadow:0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05)}
+  .premise > .label{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;
+    letter-spacing:1.8px;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:10px}
+  .premise p{font-size:16px;color:var(--text-60);margin-bottom:10px}
+  .premise p:last-child{margin-bottom:0}
+  .premise b{color:var(--text)}
+  .premise .ch{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-40);
+    margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,250,240,.1)}
 
   /* ---- spine nav ---- */
   .spine{margin:40px 0;padding:24px;border-radius:var(--radius);
@@ -195,15 +200,17 @@
 
   <header class="hero">
     <div class="kicker">Research notes · Recursive</div>
-    <h1>Notes from "Be Very Afraid"</h1>
+    <h1>Be Very Afraid</h1>
     <p class="dek">Five recent AI-safety papers, summarized — the experimental setup, what was actually observed, and what the authors argue it means. Notes from a weekend at the Recursive gathering. Read them in order: together they trace one question — <em>what these models are, whether they know when we're testing them, and whether we can still see what they're thinking.</em></p>
     <p class="byline">Nathan Labenz · AI:AM</p>
   </header>
 
-  <div class="disclosure">
-    <span class="tag">DISCLOSURE</span>
-    <span>Recursive was free, the venue beautiful, travel covered — sponsored by OpenAI. Two of the five pieces below are OpenAI / Apollo work; two are Anthropic's; one is Redwood's. Flagging the sponsorship, not pulling punches.</span>
-  </div>
+  <section class="premise">
+    <span class="label">The premise</span>
+    <p>Recursive is an invite-only weekend of AI-safety researchers drawn from across the frontier labs and independent orgs. The theme was, literally, <b>"Be Very Afraid."</b></p>
+    <p>The texture of the room: <b>~2× productivity</b> was roughly the median expectation for near-term impact, and <b>scheming was treated as plausible rather than fringe</b> — the intuition being that competitive, multi-agent training pressures reward deception the way nature does. A recurring frustration: even inspired work on model specs and "character" is moot if the models don't actually follow the specs. The mood mixed genuine <b>cross-lab camaraderie</b> with a creeping "war mentality" — happy warriors alongside the tired and sad, everyone working in real fog of war. Conspicuously under-discussed: China.</p>
+    <p class="ch">Held under Chatham House rules — so this is the shape of the conversation, not who said what.</p>
+  </section>
 
   <nav class="spine">
     <h2>The arc</h2>
